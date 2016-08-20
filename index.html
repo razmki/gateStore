@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gateStore">
+<head>
+	<style>
+		.form-control {
+			width: auto !important;
+		}
+		body {
+			padding-left: 20px;
+		}
+		.padd {
+			padding-left: 20px;
+		}
+	</style>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="app.js"></script>
+</head>
+<body>
+	<form ng-controller="CalculateController as calc">
+		<label>Выберите тип ворот:</label></br>
+
+		<label class="radio-inline"><input type="radio" checked name="type" value="{{calc.products.roles}}" ng-model="sum"> Откатные</label>
+   		<label class="radio-inline"><input type="radio" name="type" value="{{calc.products.openes}}" ng-model="sum">Распашные</label></br></br>
+   		
+   		<label>Вид:</label>
+
+   		<select class="form-control" name="typeof" ng-model="sel">
+	    <option selected  value="{{calc.products.sewingUp}}">Под зашивку</option>
+	    <option value="{{calc.products.Combine}}">Комбинированные</option>
+	    <option value="{{calc.products.stepOn}}">Пошаговые</option>
+	    </select>
+
+	    <label>Ширина (мм):</label>
+	    <input class="form-control" type="number" name="width" min="0" step="10" ng-value="4000" ng-model="widthM">
+	    <label>Высота (мм):</label>
+	    <input class="form-control" type="number" name="height" min="0" step="10" value="2000" ng-model="heightM"></br></br>
+	    
+	    <label>Дополнительно:</label></br>
+
+	    <label class="radio-inline"><input type="radio" name="type2" value="{{calc.products.yourWorld}}" ng-model="add"><span> Столбы СтройСвойМир</span></label>
+   		<label class="radio-inline"><input type="radio" name="type2" value="{{calc.products.client}}" ng-model="add"><span> Столбы заказчика</span></label></br></br>
+
+		<div class="padd">
+	   		<label class="checkbox"><input type="checkbox" name="type2" value="{{calc.products.gate}}" ng-change="calc.changed()" ng-model="gateM" ng-true-value="{{calc.products.gate}}" ng-false-value="0"> Калитка</label>
+		    <label class="checkbox"><input type="checkbox" name="automate" value="{{calc.products.automate}}" ng-model="automateM"  ng-true-value="{{calc.products.automate}}" ng-false-value="0"> Автоматика</label>
+		    <label class="checkbox"><input type="checkbox" name="bonds" value="{{calc.products.bonds}}" ng-model="bondsM" ng-true-value="{{calc.products.bonds}}" ng-false-value="0"> Закладные</label>
+		    <label class="checkbox"><input type="checkbox" name="a" value="{{calc.products.rack}}" ng-model="rackM" ng-true-value="{{calc.products.rack}}" ng-false-value="0"> Зубчатая рейка</label>
+		    <label class="checkbox"><input type="checkbox" name="a" value="{{calc.products.sewing}"  ng-model="sewingM" ng-true-value="{{calc.products.sewing}}" ng-false-value="0"> Зашивка</label>
+	    </div>
+
+		<label>Дополнительные работы:</label>
+
+		<div class="padd">
+		    <label class="checkbox"><input type="checkbox" name="a" value="{{calc.products.mounting}}" ng-model="mountingM" ng-true-value="{{calc.products.mounting}}" ng-false-value="0"> Монтаж работы</label>
+		    <label class="checkbox"><input type="checkbox" name="a" value="{{calc.products.concrete}}" ng-model="concreteM" ng-true-value="{{calc.products.concrete}}" ng-false-value="0"> Бетонные работы</label>
+	    </div>
+
+	    <h2>Цена: {{(+sum) + (+sel) + ((+widthM) *(+calc.products.width)) + ((+heightM) *(+calc.products.height)) + (+add) + (+gateM) + (+automateM) + (+bondsM) + (+rackM) + (+sewingM) + (+mountingM) + (+concreteM) | number:2}} руб. (после деноминации)</h2>
+	   </form>
+</body>
+</html>
